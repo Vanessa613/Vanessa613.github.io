@@ -14,9 +14,8 @@
     .first{
         display: inline-flex;
         background-color:rgb(53, 51, 51);
-        width: 1200px;
+        width: 100%;
         height: 50px;
-        margin: auto;
         justify-content: space-between;
     }
     .phone{
@@ -48,8 +47,51 @@
     .icon-list .icon:hover{
         background-color: orange;
     }
+    .anilove{
+        display:flex;
+        width: 100%;
+        height: 100px;
+        background-color: white;
+        justify-content: space-between;
+    }
+    .logo{
+        width: 200px;
+    }
+    .logo h1{
+        color: #858383;
+        display: inline-flex;
+    }
+    .list{
+        display: inline-flex;
+    }
+    .list p{
+        padding: 15px;
+        margin: 20px;
+        font-family: Arial;
+        color: #444141;
+        font-size: 20px;
+    }
+    .list:hover{
+        text-decoration:underline orange;
+    }
+    .btn1{
+        display: inline-block;
+        height: 50px;
+        background-color:white;
+        color: orange;
+        border: 3px solid orange;
+        text-decoration: none;
+        transition: 0.3s;
+        font-family: Arial;
+        margin: 20px;
+    }
+    .btn1:hover{
+        background-color:rgb(127, 212, 255);
+        color: white;
+        border: 3px solid rgb(127, 212, 255);
+    }
     .aboutus{
-        width: 1200px;
+        width: 100%;
         margin: auto;
         background-color: white;
         display: flex;
@@ -97,7 +139,7 @@
         background-color: #dedcdc;
         display: flex;
         justify-content: center;
-        width: 1200px;
+        width: 100%;
     }
     .card-list{
         width: 1200px;
@@ -131,7 +173,7 @@
     .howucanhelp{
         background-color: #dedcdc;
         text-align: center;
-        width: 1200px;
+        width: 100%;
     }
     .howucanhelp h1{
         line-height: 2;
@@ -144,6 +186,7 @@
         color: rgb(98, 167, 192);
     }
 </style>
+
 </head>
 <body>
     <article>
@@ -160,6 +203,22 @@
                 <div class="icon"><i class="fa-brands fa-pinterest"></i></div>
                 <div class="icon"><i class="fa-brands fa-instagram"></i></div>
             </div>
+        </div>
+    </article>
+    <article>
+        <div class="anilove">
+            <div class="logo">
+                <img src="./貓咪切版圖片/asset 0.png" alt="">
+                <h1>Anilove</h1>
+            </div>
+            <div class="list">
+                <p>Home</p>
+                <p>About</p>
+                <p>Events</p>
+                <p>News</p>
+                <p>Contacts</p>
+            </div>
+            <a href="#" class="btn1">DONATE NOW!</a>
         </div>
     </article>
     <article>
