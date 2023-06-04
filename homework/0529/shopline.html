@@ -10,22 +10,57 @@
             margin: 0;
             padding: 0;
         }
+        section:nth-child(odd){
+            flex-direction: row-reverse;
+        }
         .toptitle{
             text-align: center;
             background-color: #F7F8F9;
         }
+        section{
+            display: flex;
+        }
+        li:before {
+            content: "";
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #0061FF;
+            left: 0;
+            top: 11px;
+            position: absolute;
+        }
     </style>
 </head>
 <body>
-    <section class="toptitle">
+    <div class="toptitle">
         <h1 style="padding-top:45px">
             單一平台就能助你<br>
             在全通路輕鬆開店創業
         </h1>
-        <p style="margin-top:20px;">
+        <p style="margin-top:20px; padding-bottom: 20px;">
             從網路商店架站到實體門市管理，只需要一個平台，就能輕鬆實現開店創業，並能同步管理所有銷售管道，<br>
             SHOPLINE 助你賣得更多、賣得更好！
         </p>
+    </div>
+    <section>
+        <div class="list1">
+            <h1 style="color: #052855;text-align: left;margin-bottom: 24px;">免寫程式、多款版型<br>
+                輕鬆打造全能電商網站</h1>
+            <p style="margin-bottom: 24px;">不會寫程式也能輕鬆架設品牌電商官網！任何產業都能找到合適的專業<br>
+                設計版型，以滑鼠拖曳就能完成網頁編輯，讓架設網站就像堆積木一樣<br>簡單。
+            </p>
+            <ul style="color: #052855;text-align: left;">
+                <li>豐富版型主題與字型搭配</li>
+                <li>RWD 響應式網頁設計</li>
+                <li>獨有網址 ＆ SSL 安全憑證</li>
+                <li>SEO 搜尋引擎優化</li>
+                <li>一頁商店</li>
+                <li>開放 HTML／CSS 編輯</li>
+            </ul>
+        </div>
+        <div class="img"><img src="https://shoplineimg.com/59c0fd06080f0690b5000cd1/635b5a9142ad55001075b1c2/550x.webp?source_format=png" alt=""></div>
     </section>
 </body>
 </html>
