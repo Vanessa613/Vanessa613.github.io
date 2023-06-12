@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .game{
+            background-color: bisque;
+            padding: 10px;
+            text-align: center;
+            margin: auto;
+        }
+        .game .input{
+            width: 100%;
+        }
+        .hint{
+            font-size: 13px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="game">
+        <h1>猜數字遊戲</h1>
+        <input type="text" id="guess_input" placeholder="請輸入數字">
+        <div class="hint"></div>
+        <div class="btn-group">
+            <button id="guess_btn">Guess!!</button>
+            <button id="restart_btn">Restart</button>
+            <button id="show_answer_btn">Answer</button>
+        </div>
+    </div>
+
+    <script src="./main.js">
+    </script>
+</body>
+</html>
