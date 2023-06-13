@@ -8,36 +8,62 @@
         *{
             margin: 0;
             padding: 0;
+            /* box-sizing: border-box; */
         }
         section{
-            width: 767px;
+            max-width: 1200px;
+            margin: auto;
         }
         .title{
             padding: 10px;
             margin: 10px;
         }
-        .first{
-            
-        }
-        .first .pic{
+
+        .first .pic img{
             width: 100%;
+            /* margin: auto; */
+        }
+        .text-info{
+            padding: 10px 5px;
+        }
+        .group{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .group-item{
+            width: 50%;
+        }
+        .group-item .group-pic{
+            width: 48%;
+            /* height: 195px;
+            border-radius: 3%;
+            gap: 25px; */
+        }
+        .group-item .group-pic .icon{
+            width: 100%;
+        }
+        .group-item .txt{
+            font-size: 8px;
+        }
+        .group-item .date{
+            font-size: 5px;
         }
     </style>
 </head>
 <body>
     <section>
         <div class="title">
-            <h1>旅行者にできること</h1>
-            <p>What Travelers Can Do</p>
+            <h1 style="font-size: 20px;">旅行者にできること</h1>
+            <p style="font-size: 10px;">What Travelers Can Do</p>
         </div>
         <div class="first">
                 <div class="pic">
                     <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2021/04/Screenshot-107.png">
                 </div>
                 <div class="text-info">
-                    <h1>今年もアースデーにビーチクリーンを開催！</h1>
-                    <p>毎年4月22日は地球環境について考える日「アースデー」。最近ではこの日だけでなく、4月をアース月間として世界中で環境保護活動が行われるようになりました。太平洋の</p>
-                    <div class="date">2023.04.18</div>
+                    <h1 style="font-size: 20px;">今年もアースデーにビーチクリーンを開催！</h1>
+                    <p style="font-size: 13px;">毎年4月22日は地球環境について考える日「アースデー」。最近ではこの日だけでなく、4月をアース月間として世界中で環境保護活動が行われるようになりました。太平洋の</p>
+                    <div class="date" style="font-size: 5px;">2023.04.18</div>
                 </div>
         </div>
         <div class="group">
