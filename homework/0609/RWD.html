@@ -8,23 +8,25 @@
         *{
             margin: 0;
             padding: 0;
-            /* box-sizing: border-box; */
+            box-sizing: border-box;
         }
         section{
-            max-width: 1200px;
-            margin: auto;
+            gap: 2%;
+            padding: 2%;
         }
-        .title{
-            padding: 10px;
-            margin: 10px;
-        }
-
         .first .pic img{
             width: 100%;
+            border-radius: 1rem;
             /* margin: auto; */
         }
         .text-info{
-            padding: 10px 5px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .text-info h1,
+        .text-info p{
+            width: 50%;
         }
         .group{
             display: flex;
@@ -34,13 +36,20 @@
             width: 50%;
         }
         .group-item .group-pic{
-            width: 48%;
-            /* height: 195px;
-            border-radius: 3%;
-            gap: 25px; */
+            aspect-ratio: 1/.5;
+            /* overflow: hidden; */
+            /* border-radius: 1rem; */
+            display: flex;
         }
-        .group-item .group-pic .icon{
-            width: 100%;
+        .group-item .group-pic img {
+            height: 100%;
+            object-fit: cover;
+            /* height: 195px; */
+            border-radius: 1rem;
+            padding: 10px;
+        }
+        .icon img {
+            width: 20px;
         }
         .group-item .txt{
             font-size: 8px;
@@ -48,13 +57,30 @@
         .group-item .date{
             font-size: 5px;
         }
+
+        @media screen and (min-width:1200px) {
+                .first,
+                .group {
+                    width: 48.5%;
+                }
+
+                section {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+                .title {
+                    width: 100%;
+                    
+                }
+        }
     </style>
 </head>
 <body>
+    <!----1---->
     <section>
         <div class="title">
             <h1 style="font-size: 20px;">旅行者にできること</h1>
-            <p style="font-size: 10px;">What Travelers Can Do</p>
+            <p style="font-size: 10px; color: #6c6d6e;">What Travelers Can Do</p>
         </div>
         <div class="first">
                 <div class="pic">
@@ -98,6 +124,159 @@
                     <h2>「E Ulu A Paʻa」～ビショップ ミュージアム が年に一度のファンドレイジングを開催！～</h2>
                 </div>
                 <div class="date">2021.08.12</div>   
+            </div>
+        </div>
+    </section>
+    <!----2---->
+    <section>
+        <div class="title">
+            <h1 style="font-size: 20px;">企業の取組み</h1>
+            <p style="font-size: 10px;color: #6c6d6e; ">Corporate Initiatives</p>
+        </div>
+        <div class="first">
+                <div class="pic">
+                    <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/11/12-Group-photo.jpeg">
+                </div>
+                <div class="text-info">
+                    <h1 style="font-size: 20px;">【チームJALハワイ】ビーチクリーンアップ活動で地元コミュニティに貢献！</h1>
+                    <p style="font-size: 13px;">JALハワイ支店とJALPAK International Hawaiiで構成された“チームJALハワイ”は、ハワイ州観光局が提唱する「マラマハワイ～ハワイを思</p>
+                    <div class="date" style="font-size: 5px;">2022.11.02</div>
+                </div>
+        </div>
+        <div class="group">
+            <div class="group-item">
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/07/278637300_1713831695616085_8588043877096982703_n.jpg" alt="other" ></div>
+                <div class="txt">
+                    <h2>廃棄された漁網を服に生まれ変わらせる！海を守ろうと活動する人々が主役のドキュメンタリーを作るプロジェクトをサポートしませんか？</h2>
+                </div>
+                <div class="date">2022.07.27</div>   
+            </div>
+            <div class="group-item">
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/06/Malama-Honu-Malama-Honua_Pii_2-2.jpg" alt="other" class="rounded-3 mt-1"></div>
+                <div class="txt">
+                    <h2>第33回タートル・インディペンデンス・デイ開催</h2>
+                </div>
+                <div class="date">2022.07.01</div>   
+            </div>
+            <div class="group-item">
+                <div class="icon"><span>オラカイ株式会社</span></div>
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/06/R5TM3376-1536x1024.jpg" alt="other" class="rounded-3"></div>
+                <div class="txt">
+                    <h2>シーアスパラガス」を生産している「オラカイ」のサステナブルな取り組み</h2>
+                </div>
+                <div class="date">2022.06.15</div>   
+            </div>
+            <div class="group-item">
+                <div class="icon"><span>ザ・リッツカールトン・レジデンス・ワイキキ</span></div>
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/06/21040914144482018.jpg" alt="other" class="rounded-3"></div>
+                <div class="txt">
+                    <h2>【ザ・リッツ・カールトン・レジデンス ワイキキビーチ】オアフ島内最大運河、アラワイ運河の浄化プロジェクト「ゲンキ・アラワイ・プロジェクト」の協力パートナーに</h2>
+                </div>
+                <div class="date">2022.06.14</div>   
+            </div>
+        </div>
+    </section>
+    <!----3---->
+    <section>
+        <div class="title">
+            <h1 style="font-size: 20px;">ハワイ州観光局の取組み</h1>
+            <p style="font-size: 10px; color: #6c6d6e;">Hawai‘i Tourism Japan Initiatives</p>
+        </div>
+        <div class="first">
+                <div class="pic">
+                    <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/10/10187.tif.jpg" alt="main">
+                </div>
+                <div class="text-info">
+                    <h1 style="font-size: 20px;">マウイ郡、ハワイ島、海洋生物に影響与える日焼け止めの流通禁止を発表</h1>
+                    <p style="font-size: 13px;">2022年10月1日からマウイ郡ノンミネラルの日焼け止めの流通・販売禁止条例を施行 マウイ郡の条例5306号により、2022年10月1日からマウイ島、ラナイ島、</p>
+                    <div class="date" style="font-size: 5px;">2022.12.02</div>
+                </div>
+        </div>
+        <div class="group">
+            <div class="group-item">
+                <div class="icon"><span>ハワイ州観光局</span></div>
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/10/22100108362488961.jpeg" alt="other"></div>
+                <div class="txt">
+                    <h2>TBSミニ番組　マラマ〜新しいハワイ旅〜</h2>
+                </div>
+                <div class="date">2022.10.01</div>   
+            </div>
+            <div class="group-item">
+                <div class="icon"><span>ハワイ州観光局</span></div>
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/06/%E5%90%8D%E7%A7%B0%E6%9C%AA%E8%A8%AD%E5%AE%9A%E3%81%AE%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-2.png" alt="other"></div>
+                <div class="txt">
+                    <h2>ハワイ州観光局、マラマハワイリツイートキャンペーン第2弾を実施！～動画の楽曲を作詞された倉木麻衣さんのbillboard
+                        classics主催シンフォニックコンサート3公演を合計30組60名様にご招待！～</h2>
+                </div>
+                <div class="date">2022.06.06</div>   
+            </div>
+            <div class="group-item">
+                <div class="icon"><span>ハワイ州観光局</span></div>
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/04/22042208064245342.jpg" alt="other" ></div>
+                <div class="txt">
+                    <h2>ハワイ州観光局、マラマハワイ動画のリツイートキャンペーンを実施～動画のために書き下ろした『Sea
+                        wind』が収録された倉木麻衣さんサイン入りCDを10名様に贈呈！～</h2>
+                </div>
+                <div class="date">2021.12.14</div>   
+            </div>
+            <div class="group-item">
+                <div class="icon"><span>ハワイ州観光局</span></div>
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2021/12/MalamaHawaii.jpg" alt="other" ></div>
+                <div class="txt">
+                    <h2>ハワイ州観光局、マラマハワイ動画のリツイートキャンペーンを実施～動画のために書き下ろした『Seawind』が収録された倉木麻衣さんサイン入りCDを10名様に贈呈！～</h2>
+                </div>
+                <div class="date">2021.12.14</div>   
+            </div>
+        </div>
+    </section>
+    <!----4---->
+    <section>
+        <div class="title">
+            <h1 style="font-size: 20px;">コミュニティの取り組み</h1>
+            <p style="font-size: 10px;color: #6c6d6e; ">Communitiy Initiatives</p>
+        </div>
+        <div class="first">
+                <div class="pic">
+                    <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/07/R5TM5544.jpg" alt="main">
+                </div>
+                <div class="text-info">
+                    <h1 style="font-size: 20px;">Zero Waste Oahu (ゼロウェイストオアフ) の取り組み</h1>
+                    <p style="font-size: 13px;">Zero Waste Oahuは現在の生産方法、購買システム、廃棄物管理システムに積極的に介入するシステムを通じて、バランスのとれた消費文化と廃棄物の少ない未来</p>
+                    <div class="date" style="font-size: 5px;">2022.07.20</div>
+                </div>
+        </div>
+        <div class="group">
+            <div class="group-item">
+                <div class="icon"><span>サスティナブル・コーストラインズ・ハワイ（Sustainable
+                    Coastlines Hawaii）</span></div>
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/06/Unknown-17.jpeg" alt="other"></div>
+                <div class="txt">
+                    <h2>サスティナブル・コーストラインズ・ハワイ、第二回クリーンアップイベント「The Kaimukī Cleanup Festival 」に参加</h2>
+                </div>
+                <div class="date">2022.06.20</div>   
+            </div>
+            <div class="group-item">
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/05/IMG_7294.jpg" alt="other"></div>
+                <div class="txt">
+                    <h2>地上最古の海洋生物の一種であるウミガメ　彼らを絶滅の危機から保護する「マラマ イ ナ ホヌ」</h2>
+                </div>
+                <div class="date">2022.05.26</div>   
+            </div>
+            <div class="group-item">
+                <div class="icon"><span>アウトリガー・ホテルズ＆リゾーツ</span></div>
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/04/Hotel-Lobby-Art-Exhibition-scaled.jpg" alt="other"></div>
+                <div class="txt">
+                    <h2>サステナブルなアートとファッションをテーマにしたイベント「THINK GLOBALLY, ACT LOCALLY」を開催</h2>
+                </div>
+                <div class="date">2022.04.23</div>   
+            </div>
+            <div class="group-item">
+                <div class="icon"><span>クプ・ハワイ（KUPU Hawaii）</span></div>
+                <div class="group-pic"><img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2021/06/IMG_0104-2-1.jpg" alt="other" ></div>
+                <div class="txt">
+                    <h2>次世代を支援するクプ・ハワイ、Hoʻokupu Centerの取り組み</h2>
+                </div>
+                <div class="date">2021.06.23</div>   
             </div>
         </div>
     </section>
