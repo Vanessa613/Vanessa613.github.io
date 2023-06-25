@@ -2214,9 +2214,42 @@
                     alert("請先建立陣列資料");
                     return;
                 }
-
                 alert("以表格呈現英雄人物資料！");
 
+                let table = document.createElement('table')
+                let thead = document.createElement('thead')
+                let tbody = document.createElement('tbody')
+                let theadTR = document.createElement('tr')
+                let tbodyTR = document.createElement('tr')
+                let th1 = document.createElement('th')
+                let th2 = document.createElement('th')
+                let th3 = document.createElement('th')
+                let td1 = document.createElement('td')
+                let td2 = document.createElement('td')
+                let td3 = document.createElement('td')
+
+                let theadtitle = ["英雄名","說明","圖片"]
+                theadtitle.forEach(x => {
+                    th1.innerText = theadtitle[0]
+                    th2.innerText = theadtitle[1]
+                    th3.innerText = theadtitle[2]
+                    theadTR.append(th1)
+                    theadTR.append(th2)
+                    theadTR.append(th3)
+                })
+                thead.append(theadTR)
+                table.append(thead)
+                container.append(table)
+
+                heroArray.forEach(x => {
+                    container.innerText +=`${x}`
+                    tbodyTR.append(th1)
+                    tbodyTR.append(th2)
+                    tbodyTR.append(th3)
+                    tbody.append(tbodyTR)
+                })
+                table.append(tbody)
+                container.append(table)
             });
         }
 
