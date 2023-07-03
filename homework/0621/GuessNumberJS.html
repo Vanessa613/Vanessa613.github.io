@@ -64,7 +64,7 @@
         }
         //reset
         function resetGame() {
-            record.innerText = ''
+            classList.remove('recording')
             answer = []
             startBtn.disabled = false
             resetBtn.disabled = true
@@ -73,7 +73,7 @@
         function inputNum() {
             //檢查輸入的數字是否符合條件
             let guessInput = input.value.trim()
-            if (guessInput.length != 4 || guessInput === '' || isNaN(guessInput) || guessInput[0] === '0') {
+            if (guessInput.length != 4 || guessInput === '' || isNaN(guessInput)) {
                 window.alert(`請輸入4個數字🥺`)
                 input.value = ''
                 return
@@ -107,9 +107,10 @@
                     }
                 }
             }
+            
             //生出紀錄
             record.classList.add('recording');
-            record.innerHTML += `<p class="btn-AB">${A}A${B}B</p><p>${guessArr.join('')}</p>`
+            record.innerHTML += `<p class="btn-AB">${A}A${B}B : ${guessArr.join('')}</p>`
             input.value = ''
         }
 
