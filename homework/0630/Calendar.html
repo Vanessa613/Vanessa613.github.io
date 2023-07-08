@@ -141,34 +141,16 @@
         crossorigin="anonymous"></script>
 
     <script>
-        //Modal start
-        const myModalAdd = new bootstrap.Modal('#addModal', {
-            keyboard: false
-        })
-        const myModalEdit = new bootstrap.Modal('#editModal', {
-            keyboard: false
-        })
         //宣告
         let today = new Date()
         let month = today.getMonth()
         let year = today.getFullYear()
-        let day = 1
         //DOM
         preMonthBtn = document.getElementById('preMonth')
         thisMonthBtn = document.getElementById('thisMonth')
         nextMonthBtn = document.getElementById('nextMonth')
         yearMonthDOM = document.querySelector('h3')
         tbodyDOM = document.querySelector('tbody')
-        addon1DOM = document.getElementById('add-addon1')
-        addon2DOM = document.getElementById('add-addon2')
-        addon3DOM = document.getElementById('add-addon3')
-        addinfoBtn = document.getElementById('add-info')
-
-        editon1DOM = document.getElementById('edit-addon1')
-        editon2DOM = document.getElementById('edit-addon2')
-        editon3DOM = document.getElementById('edit-addon3')
-        editon4Btn = document.getElementById('edit-addon4')
-        editon5Btn = document.getElementById('edit-addon5')
 
         //addEventListener 事件
         preMonthBtn.addEventListener('click', function () {
@@ -196,34 +178,6 @@
             renderDate()
         })
 
-        //新增行程按鈕
-        addinfoBtn.addEventListener('click', function () {
-            let key = addon1DOM.value.split('-').join('')
-            let obj = {
-                title : addon2DOM.value,
-                content : addon3DOM.value
-            }
-            let dataArray = []
-            let data = gatLocalStorage(key)
-            if(data == null){
-                dataArray.push(obj)
-            }else{
-                dataArray = data
-                dataArray.push(obj)
-            }
-            setLocalStorage(key,dataArray)
-            myModalAdd.hide
-        })
-
-        //編輯行程的修改按鈕
-        editon4Btn.addEventListener('click', function () {
-
-        })
-
-        //編輯行程的刪除按鈕
-        editon5Btn.addEventListener('click', function () {
-
-        })
 
         window.onload = function () {
             renderDate()
@@ -242,6 +196,7 @@
             let allDays = dateOfMonth + dayOfMonth
             let weeks = Math.ceil(allDays / 7)
 
+            let day = 1
             //tr
             for (let i = 0; i < weeks; i++) {
                 let trDOM = document.createElement('tr')
@@ -258,7 +213,6 @@
                         } else {
                             tdDOM.innerText = ''
                         }
-
                     }
                     trDOM.append(tdDOM)
                 }
@@ -270,15 +224,6 @@
             //將日期取到Modal的input value
             addon1DOM.value = `${year}-${month + 1}-${day}`
             myModalAdd.show()
-        }
-
-        function gatLocalStorage(key) {
-            let data = JSON.parse(localStorage.getItem(key))
-            return data
-        }
-
-        function setLocalStorage(key, value){
-            localStorage.setItem(key, JSON.stringify(value))
         }
     </script>
 </body>
