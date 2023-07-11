@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            td span {
+                position: relative;
+                z-index: 1;
+                width: 100%;
+                display: block;
+            }
+        </style>
 </head>
 
 <body>
@@ -72,23 +80,27 @@
                         <!-- yyyy-mm-dd -->
                         <div class="input-group mb-3">
                             <span class="input-group-text">日期</span>
-                            <input id="add-addon1" type="text" class="form-control" aria-describedby="basic-addon1"
-                                disabled>
+                            <input id="addModalDate" type="date" class="form-control" aria-describedby="basic-addon1">
+                        </div>
+                        <!-- time-->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">時間</span>
+                            <input id="addModalTime" type="time" value="12:00" class="form-control"
+                                aria-describedby="basic-addon1">
                         </div>
                         <!-- title -->
                         <div class="input-group mb-3">
                             <span class="input-group-text">Title</span>
-                            <input id="add-addon2" type="text" class="form-control" aria-describedby="basic-addon1">
+                            <input id="addModalTitle" type="text" class="form-control" aria-describedby="basic-addon1">
                         </div>
                         <!-- info -->
                         <div class="input-group mb-3">
                             <span class="input-group-text">內容</span>
-                            <input id="add-addon3" type="text" class="form-control" aria-describedby="basic-addon1">
+                            <input id="addModalInfo" type="text" class="form-control" aria-describedby="basic-addon1">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" id="add-info">✓</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">✘</button>
+                        <button type="button" class="btn btn-dark" id="addBtnInfo" onclick="addCalendar()">✓</button>
                     </div>
                 </div>
             </div>
@@ -111,24 +123,28 @@
                         <!-- yyyy-mm-dd -->
                         <div class="input-group mb-3">
                             <span class="input-group-text">日期</span>
-                            <input id="edit-addon1" type="text" class="form-control" aria-describedby="basic-addon1"
-                                disabled>
+                            <input id="editModalDate" type="date" class="form-control" aria-describedby="basic-addon1" disabled>
+                        </div>
+                        <!-- time-->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">時間</span>
+                            <input id="editModalTime" type="time" value="12:00" class="form-control"
+                                aria-describedby="basic-addon1">
                         </div>
                         <!-- title -->
                         <div class="input-group mb-3">
                             <span class="input-group-text">Title</span>
-                            <input id="edit-addon2" type="text" class="form-control" aria-describedby="basic-addon1">
+                            <input id="editModalTitle" type="text" class="form-control" aria-describedby="basic-addon1">
                         </div>
                         <!-- info -->
                         <div class="input-group mb-3">
                             <span class="input-group-text">內容</span>
-                            <input id="edit-addon3" type="text" class="form-control" aria-describedby="basic-addon1">
+                            <input id="editModalInfo" type="text" class="form-control" aria-describedby="basic-addon1">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" id="edit-addon4">修改</button>
-                        <button type="button" class="btn btn-dark" id="edit-addon5">刪除</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">✘</button>
+                        <button type="button" class="btn btn-dark" id="editBtn" onclick="editCalendar()">修改</button>
+                        <button type="button" class="btn btn-dark" id="editBtnDelete" onclick="deleteCalendar()">刪除</button>
                     </div>
                 </div>
             </div>
@@ -140,92 +156,7 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
 
-    <script>
-        //宣告
-        let today = new Date()
-        let month = today.getMonth()
-        let year = today.getFullYear()
-        //DOM
-        preMonthBtn = document.getElementById('preMonth')
-        thisMonthBtn = document.getElementById('thisMonth')
-        nextMonthBtn = document.getElementById('nextMonth')
-        yearMonthDOM = document.querySelector('h3')
-        tbodyDOM = document.querySelector('tbody')
-
-        //addEventListener 事件
-        preMonthBtn.addEventListener('click', function () {
-            month--
-            if (month === -1) {
-                year--
-                month = 11
-            }
-            renderDate()
-        })
-
-        thisMonthBtn.addEventListener('click', function () {
-            let thisDate = new Date()
-            month = thisDate.getMonth()
-            year = thisDate.getFullYear()
-            renderDate()
-        })
-
-        nextMonthBtn.addEventListener('click', function () {
-            month++
-            if (month === 11) {
-                year++
-                month = 0
-            }
-            renderDate()
-        })
-
-
-        window.onload = function () {
-            renderDate()
-        }
-
-        //function 渲染
-        function renderDate() {
-            tbodyDOM.innerHTML = ''
-            yearMonthDOM.innerText = `${year}年${month + 1}月`
-
-            //這個月的第一天是禮拜幾
-            let dayOfMonth = new Date(year, month, 1).getDay()
-            //這個月有幾天
-            let dateOfMonth = new Date(year, month + 1, 0).getDate()
-            //這個月有幾週
-            let allDays = dateOfMonth + dayOfMonth
-            let weeks = Math.ceil(allDays / 7)
-
-            let day = 1
-            //tr
-            for (let i = 0; i < weeks; i++) {
-                let trDOM = document.createElement('tr')
-                for (let j = 0; j < 7; j++) {
-                    let tdDOM = document.createElement('td')
-                    //i=0代表第一週
-                    if (i === 0 && j < dayOfMonth) {
-                        tdDOM.innerText = ''
-                    } else {
-                        if (day <= dateOfMonth) {
-                            tdDOM.innerText = day
-                            tdDOM.addEventListener('click', tdClick.bind(null, year, month, day))
-                            day++
-                        } else {
-                            tdDOM.innerText = ''
-                        }
-                    }
-                    trDOM.append(tdDOM)
-                }
-                tbodyDOM.append(trDOM)
-            }
-        }
-
-        function tdClick(year, month, day) {
-            //將日期取到Modal的input value
-            addon1DOM.value = `${year}-${month + 1}-${day}`
-            myModalAdd.show()
-        }
-    </script>
+    <script src="./calender.js"></script>
 </body>
 
 </html>
