@@ -7,9 +7,13 @@ window.onload = function () {
         .then(response => response.json())
         .then(data => {
             renderingCategory(data)
+            //TODO: 取得預設的商品並渲染出來(第一筆資料)
+            return fetchMerchandise(data[0].dataUrl)
+        })
+        .then(shop => {
+            renderingShop(shop)
         })
 
-    //TODO: 取得預設的商品並渲染出來(第一筆資料)
 
 }
 
@@ -29,12 +33,7 @@ function fetchMerchandise(url) {
  */
 function renderingCategory(categoryArray) {
 
-    const ul = document.getElementById('category_list')
-    categoryArray.forEach(item => {
-        ul.innerHTML += <li class="nav-item">
-            <button class="nav-link" aria-current="page">${item.title}</button>
-        </li>
-    })
+
     // html的樣子
     // `<ul>
     //     <li class="nav-item">
@@ -47,8 +46,29 @@ function renderingCategory(categoryArray) {
     //         <button class="nav-link" aria-current="page">商品項目3</button>
     //     </li>
     // </ul>`
+    const ul = document.getElementById('category_list')
+    categoryArray.forEach(item => {
+        const li = document.createElement('li')
+        li.classList.add('nav-item')
 
-    //TODO: Click事件:點擊之後要切換商品內容
+        const button = document.createElement('button')
+        button.classList.add('nav-link')
+        button.setAttribute('aria-current', 'page')
+        button.textContent = item.title
+        //TODO: Click事件:點擊之後要切換商品內容 
+        // button.onclick = function(){
+        //     fetchMerchandise(item.dataUrl)
+        //         .then(data => {
+        //             console.log(data);
+        //         })
+        // }
+        button.onclick = async function () {
+            const data = await fetchMerchandise(item.dataUrl)
+            renderingShop(data)
+        }
+        li.append(button)
+        ul.append(li)
+    })
 }
 
 
@@ -57,13 +77,16 @@ function renderingCategory(categoryArray) {
  * @param {*} shop 
  */
 function renderingShop(merchandise) {
-
+    console.log(merchandise);
     //TODO: 計算最少需多少$
-
+    const priceList = merchandise.specifications.map(spec => spec.price)
+    const minPrice = Math.min(...priceList)
+    console.log(minPrice);
     //TODO: 產出標題區塊
-
+    createTitleArea(merchandise.title, minPrice)
     //TODO: 產出主圖區塊
-
+    const defaultImgs = Object.values(merchandise.images)[0]
+    createCarousel(defaultImgs)
 
     //TODO: 商品客製化選擇組件
     let widgetHTML = ''
@@ -85,7 +108,13 @@ function renderingShop(merchandise) {
 function createTitleArea(title, price) {
     const titleArea = document.querySelector('.title-area')
     //TODO: 加入h1及金額 NT$ xxx起
-
+    titleArea.innerHTML = `
+        <h1>
+        ${title}
+        </h1 >
+        <div class="total-price">
+            NT$ ${price.toLocaleString()} 起
+        </div>`
 }
 
 /**
@@ -94,13 +123,30 @@ function createTitleArea(title, price) {
  */
 function createCarousel(images) {
     const mainImgArea = document.querySelector('.main-img-area')
-    //TODO:
     const carouselIndicatorsHTML = createCarouselIndicatorsHTML(images)
     //TODO:
     const carouselInnerHTML = createCarouselHTML(images)
 
     //TODO: 整體幻燈片HTML
-    mainImgArea.innerHTML = ``
+    mainImgArea.innerHTML = `
+    <div id="carouselExampleAutoplaying" class="carousel slide  sticky-top" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            ${carouselIndicatorsHTML}
+        </div>
+        <div class="carousel-inner">
+            ${carouselInnerHTML}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>`
 }
 
 /**
@@ -117,7 +163,10 @@ function createCarouselIndicatorsHTML(images) {
     //     aria-label="Slide 3"></button>`
     let html = ''
     //TODO: 產生指標
-
+    images.forEach((img, idx) => {
+        html += `<button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="${idx}"
+                class="${idx === 0 ? 'active' : ''}" ${idx === 0 ? 'aria-current="true"' : ''} aria-label="Slide ${idx + 1}"></button>`
+    })
     return html
 }
 
@@ -141,7 +190,11 @@ function createCarouselHTML(images) {
     // </div>`
     let html = ''
     //TODO: 產生主圖
-
+    images.forEach((img, idx) => {
+        html += `<div class="carousel-item ${idx === 0 ? 'active' : ''}">
+                    <img src="${img}" class="d-block w-100" alt="...">
+                </div>`
+    })
     return html
 }
 
