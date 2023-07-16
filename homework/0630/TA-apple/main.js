@@ -7,14 +7,12 @@ window.onload = function () {
         .then(response => response.json())
         .then(data => {
             renderingCategory(data)
-            //TODO: 取得預設的商品並渲染出來(第一筆資料)
             return fetchMerchandise(data[0].dataUrl)
         })
         .then(shop => {
+            shopData = shop
             renderingShop(shop)
         })
-
-
 }
 
 /**
@@ -77,11 +75,10 @@ function renderingCategory(categoryArray) {
  * @param {*} shop 
  */
 function renderingShop(merchandise) {
-    console.log(merchandise);
+    shopData = merchandise
     //TODO: 計算最少需多少$
     const priceList = merchandise.specifications.map(spec => spec.price)
     const minPrice = Math.min(...priceList)
-    console.log(minPrice);
     //TODO: 產出標題區塊
     createTitleArea(merchandise.title, minPrice)
     //TODO: 產出主圖區塊
@@ -95,7 +92,6 @@ function renderingShop(merchandise) {
     })
 
     document.querySelector('.spec-widget').innerHTML = widgetHTML
-
     document.querySelector('.qna-area').classList.remove('d-none')
     document.querySelector('footer').classList.remove('d-none')
 }
@@ -204,15 +200,29 @@ function createCarouselHTML(images) {
  * @returns Widget區塊HTML
  */
 function createWidgetHTML(widget) {
-
     //TODO: 取得該區塊所有的項目
     const items = getWidgetItem(widget.type)
 
     //TODO: 產出區塊內所有的item的innerHTML
     let itemHTML = ''
 
+    items.forEach(item => {
+        if (widget.type === 'color') {
+            const color = shopData.colors.find(c => c.colorCode === items)
+            itemHTML += `<div class="col-6">
+                            <div class="border border-secondary-subtle rounded-3 p-4 text-center" role="button">
+                            <img class="w-25" src="${color.colorImg}"
+                                alt="${color.colorName}">
+                            </div>
+                        </div>`
+        } else if (widget === 'model') {
 
-    //
+        } else if (widget === 'storage') {Ò
+
+        } else {
+
+        }
+    })
 
     let html = `
     <section class="widget-item mb-4 mx-lg-3">
@@ -222,7 +232,6 @@ function createWidgetHTML(widget) {
             ${itemHTML}
         </div>
     </section>`
-
 
     return html
 }
@@ -234,7 +243,7 @@ function createWidgetHTML(widget) {
  */
 function getWidgetItem(type) {
     //TODO: 透過type取得不重複的spec items
-    const items = []
+    const items = shopData.specifications.map(spec => spec[type])
     return new Set(items)
 }
 
