@@ -231,7 +231,18 @@
             }
             //取得YouBike Data 並加上marker + popup
             youBikeData.forEach(item => {
-                var marker = L.marker([item.lat, item.lng]).addTo(map)
+                var color = item.sbi > 10 ? 'green' : item.sbi < 1 ? 'red' : 'blue'
+                var marker =
+                    // L.marker([item.lat, item.lng]).addTo(map)
+                    L.marker([item.lat, item.lng], {
+                        icon: L.icon({
+                            iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
+                            iconSize: [25, 41],
+                            iconAnchor: [12, 41],
+                            popupAnchor: [1, -34],
+                            tooltipAnchor: [16, -28]
+                        })
+                    })
                 marker.bindPopup(`
                     <h5>${item.sna}</h5>
                     <p>${item.ar}</p>
