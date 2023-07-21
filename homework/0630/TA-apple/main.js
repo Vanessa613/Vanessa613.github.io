@@ -217,7 +217,7 @@ function createWidgetHTML(widget) {
                         </div>`
         } else if (widget === 'model') {
 
-        } else if (widget === 'storage') {Ò
+        } else if (widget === 'storage') {
 
         } else {
 
